@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../assets/styles/Register.scss";
-import { ROUTES } from "../util/routes";
-import { userSignUpAction } from "../redux/actions/userActions";
+import React from "react";
 import useForm from "../util/useForm";
 import validate from "../util/validate";
+import FormField from "./Form/FormField";
+import "../assets/styles/Register.scss";
 
 export default () => {
   const userSignUp = () => {
@@ -23,49 +21,46 @@ export default () => {
       <div className="register_card">
         <h1 className="title">Sign in</h1>
         <form onSubmit={handleSubmit} noValidate>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              onChange={handleOnchange}
-              value={values.name}
-              className={`${
-                errors.name ? "text_field field_error" : "text_field"
-              }`}
-            />
-            {errors.name && <div className="error_message">{errors.name}</div>}
-          </label>
-          <label>
-            Email:
-            <input
-              type="text"
-              name="email"
-              onChange={handleOnchange}
-              value={values.email}
-              className="text_field"
-            />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              name="password"
-              onChange={handleOnchange}
-              value={values.password}
-              className="text_field"
-            />
-          </label>
-          <label>
-            Confirm Password:
-            <input
-              type="password"
-              name="confirmPassword"
-              onChange={handleOnchange}
-              value={values.confirmPassword}
-              className="text_field"
-            />
-          </label>
+          <FormField
+            {...{
+              labelText: "Name",
+              type: "text",
+              name: "name",
+              handleOnchange,
+              value: values.name,
+              error: errors.name
+            }}
+          />
+          <FormField
+            {...{
+              labelText: "Email",
+              type: "text",
+              name: "email",
+              handleOnchange,
+              value: values.email,
+              error: errors.email
+            }}
+          />
+          <FormField
+            {...{
+              labelText: "Password",
+              type: "password",
+              name: "password",
+              handleOnchange,
+              value: values.password,
+              error: errors.password
+            }}
+          />
+          <FormField
+            {...{
+              labelText: "Confirm Password",
+              type: "password",
+              name: "confirmPassword",
+              handleOnchange,
+              value: values.confirmPassword,
+              error: errors.confirmPassword
+            }}
+          />
           <button
             className="standard_btn"
             type="submit"

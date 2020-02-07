@@ -7,16 +7,10 @@ const useForm = (callback, validate) => {
     password: "",
     confirmPassword: ""
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleOnchange = e => {
     const { name, value } = e.target;
-    console.log(values);
     setValues({ ...values, [name]: value });
   };
   const handleSubmit = e => {
