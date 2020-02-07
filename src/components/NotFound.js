@@ -9,7 +9,7 @@ export default () => {
       <div className="dashboard_card">
         <h1 className="title">Page not found</h1>
 
-        <Link className="play_btn" to={ROUTES.logout}>
+        <Link className="standard_btn" to={ROUTES.logout}>
           logout
         </Link>
       </div>

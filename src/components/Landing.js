@@ -6,13 +6,13 @@ import { ROUTES } from "../util/routes";
 export default () => {
   return (
     <div className="landing_parent_wrapper">
-      <div className="login_card">
+      <div className="landing_card">
         <h1 className="title">Hello there</h1>
 
-        <Link className="play_btn" to={ROUTES.login}>
+        <Link className="standard_btn" to={ROUTES.login}>
           Login
         </Link>
-        <Link className="play_btn" to={ROUTES.register}>
+        <Link className="standard_btn" to={ROUTES.register}>
           Register
         </Link>
       </div>

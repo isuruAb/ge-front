@@ -20,19 +20,26 @@ export default () => {
       <div className="login_card">
         <h1 className="title">Sign in</h1>
         <form onSubmit={handleSignIn}>
-          <input
-            type="text"
-            onChange={handleEmail}
-            value={email}
-            className="name_field"
-          />
-          <input
-            type="password"
-            onChange={handlePassword}
-            value={password}
-            className="password_field"
-          />
-          <button className="play_btn" type="submit">
+          <label>
+            Email Address:
+            <input
+              type="text"
+              onChange={handleEmail}
+              value={email}
+              className="text_field"
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              onChange={handlePassword}
+              value={password}
+              className="text_field"
+            />
+          </label>
+
+          <button className="standard_btn" type="submit">
             Sign in
           </button>
         </form>

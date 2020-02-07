@@ -1,0 +1,18 @@
+@import "./mixins/mixins.scss";
+
+.dashboard_parent_wrapper {
+  @include background;
+  .dashboard_card {
+    @include Card;
+    width: 350px;
+    .title {
+      color: #000066;
+      text-align: center;
+    }
+    .standard_btn {
+      @include buttonStyle;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+}

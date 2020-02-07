@@ -7,7 +7,7 @@
   font-family: bangersregular;
 }
 
-@mixin gameCard {
+@mixin Card {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -28,7 +28,7 @@
   border-radius: 3px;
   display: block;
   text-align: center;
-  padding: 10px 5px;
+  padding: 10px 0px;
 }
 
 @mixin handWrapper {

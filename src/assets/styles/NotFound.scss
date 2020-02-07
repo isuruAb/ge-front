@@ -1,0 +1,18 @@
+@import "./mixins/mixins.scss";
+
+.not_found_parent_wrapper {
+  @include background;
+  .not_found_card {
+    @include Card;
+    width: 350px;
+    .title {
+      color: #000066;
+      text-align: center;
+    }
+    .standard_btn {
+      @include buttonStyle;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+}

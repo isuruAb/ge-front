@@ -2,22 +2,15 @@
 
 .landing_parent_wrapper {
   @include background;
-  .login_card {
-    @include gameCard;
-    .name_field {
-      height: 40px;
-      padding: 0 0 0 5px;
-      border: solid 1px #ccc;
-      border-radius: 3px;
-      text-align: center;
-      width: 98%;
-      margin: 10px 0 0 0;
-      font-size: 16px;
-    }
+  .landing_card {
+    @include Card;
+    width: 250px;
+
     .title {
       color: #000066;
+      text-align: center;
     }
-    .play_btn {
+    .standard_btn {
       @include buttonStyle;
       text-decoration: none;
       width: 100%;
