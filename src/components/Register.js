@@ -2,41 +2,47 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/Register.scss";
 import { ROUTES } from "../util/routes";
+import { userSignUpAction } from "../redux/actions/userActions";
+import useForm from "../util/useForm";
+import validate from "../util/validate";
 
 export default () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleEmail = e => {
-    setEmail(e.target.value);
+  const userSignUp = () => {
+    console.log(values);
   };
-  const handlePassword = e => {
-    setPassword(e.target.value);
-  };
-  const handleSignIn = e => {
-    e.preventDefault();
-  };
+  const {
+    handleOnchange,
+    handleSubmit,
+    values,
+    errors,
+    isSubmitting
+  } = useForm(userSignUp, validate);
+
   return (
     <div className="register_parent_wrapper">
       <div className="register_card">
         <h1 className="title">Sign in</h1>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSubmit} noValidate>
           <label>
             Name:
             <input
               type="text"
               name="name"
-              onChange={handleEmail}
-              value={email}
-              className="text_field"
+              onChange={handleOnchange}
+              value={values.name}
+              className={`${
+                errors.name ? "text_field field_error" : "text_field"
+              }`}
             />
+            {errors.name && <div className="error_message">{errors.name}</div>}
           </label>
           <label>
             Email:
             <input
               type="text"
               name="email"
-              onChange={handleEmail}
-              value={email}
+              onChange={handleOnchange}
+              value={values.email}
               className="text_field"
             />
           </label>
@@ -45,8 +51,8 @@ export default () => {
             <input
               type="password"
               name="password"
-              onChange={handlePassword}
-              value={password}
+              onChange={handleOnchange}
+              value={values.password}
               className="text_field"
             />
           </label>
@@ -55,12 +61,16 @@ export default () => {
             <input
               type="password"
               name="confirmPassword"
-              onChange={handlePassword}
-              value={password}
+              onChange={handleOnchange}
+              value={values.confirmPassword}
               className="text_field"
             />
           </label>
-          <button className="standard_btn" type="submit">
+          <button
+            className="standard_btn"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Sign in
           </button>
         </form>

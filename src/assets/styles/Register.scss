@@ -21,6 +21,9 @@
           margin: 10px 0 0 0;
           font-size: 16px;
         }
+        .field_error {
+          border: solid 1px red;
+        }
       }
     }
 
@@ -32,6 +35,9 @@
       @include buttonStyle;
       text-decoration: none;
       width: 100%;
+    }
+    .standard_btn[disabled] {
+      background: $buttonDisabledColor;
     }
   }
 }
