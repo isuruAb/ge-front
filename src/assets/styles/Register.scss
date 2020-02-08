@@ -1,31 +1,10 @@
 @import "./mixins/mixins.scss";
-
+@import "./Form.scss";
 .register_parent_wrapper {
   @include background;
   .register_card {
     @include Card;
     width: 350px;
-    form {
-      display: block;
-      margin: 10px 0 0 0;
-      label {
-        padding: 10px 0 0 0;
-        position: relative;
-        display: block;
-        .text_field {
-          height: 40px;
-          padding: 0 0 0 5px;
-          border: solid 1px #ccc;
-          border-radius: 3px;
-          width: 98%;
-          margin: 10px 0 0 0;
-          font-size: 16px;
-        }
-        .field_error {
-          border: solid 1px red;
-        }
-      }
-    }
 
     .title {
       color: #000066;

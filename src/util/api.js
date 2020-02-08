@@ -16,7 +16,7 @@ export const postRequest = (url, data, token) => {
             reject({ code: response.status, error: "Bad Request" });
             break;
           case 401:
-            reject({ code: response.status, error: "Not authenticated" });
+            reject({ code: response.status, error: "Authentication Failed" });
             break;
           case 403:
             reject({ code: response.status, error: "Forbidden" });
@@ -26,7 +26,6 @@ export const postRequest = (url, data, token) => {
         }
       })
       .then(responseJson => {
-        console.log("responseJson", responseJson);
         if (responseJson) {
           resolve(responseJson);
         }

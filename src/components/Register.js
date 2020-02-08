@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useForm from "../util/useForm";
-import validate from "../validations/loginValidate";
+import validate from "../validations/signupValidate";
 import FormField from "./Form/FormField";
 import "../assets/styles/Register.scss";
 import { userSignUpAction } from "../redux/actions/userActions";
@@ -13,10 +13,9 @@ export default () => {
   const history = useHistory();
 
   const userSignUp = async () => {
-    const res = await userSignUpAction(dispatch, values);
-    if (res) {
+    userSignUpAction(dispatch, values).then(data => {
       history.push(ROUTES.login);
-    }
+    });
     setIsSubmitting(false);
   };
 
