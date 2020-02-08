@@ -17,8 +17,6 @@ const useForm = (callback, validate) => {
     setIsSubmitting(true);
     e.preventDefault();
     setErrors(validate(values));
-    callback();
-    setIsSubmitting(false);
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -30,7 +28,8 @@ const useForm = (callback, validate) => {
     handleSubmit,
     values,
     errors,
-    isSubmitting
+    isSubmitting,
+    setIsSubmitting
   };
 };
 

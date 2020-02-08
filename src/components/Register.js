@@ -1,19 +1,32 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useForm from "../util/useForm";
-import validate from "../util/validate";
+import validate from "../validations/loginValidate";
 import FormField from "./Form/FormField";
 import "../assets/styles/Register.scss";
+import { userSignUpAction } from "../redux/actions/userActions";
+import { ROUTES } from "../util/routes";
 
 export default () => {
-  const userSignUp = () => {
-    console.log(values);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const userSignUp = async () => {
+    const res = await userSignUpAction(dispatch, values);
+    if (res) {
+      history.push(ROUTES.login);
+    }
+    setIsSubmitting(false);
   };
+
   const {
     handleOnchange,
     handleSubmit,
     values,
     errors,
-    isSubmitting
+    isSubmitting,
+    setIsSubmitting
   } = useForm(userSignUp, validate);
 
   return (

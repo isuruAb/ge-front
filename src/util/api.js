@@ -12,14 +12,15 @@ export const postRequest = (url, data, token) => {
     })
       .then(response => {
         switch (response.status) {
+          case 400:
+            reject({ code: response.status, error: "Bad Request" });
+            break;
           case 401:
             reject({ code: response.status, error: "Not authenticated" });
             break;
-
           case 403:
             reject({ code: response.status, error: "Forbidden" });
             break;
-
           default:
             return response.json();
         }
