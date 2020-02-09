@@ -1,17 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "../assets/styles/Dashboard.scss";
+import { getUser, logoutUser } from "../redux/actions/userActions";
 import { ROUTES } from "../util/routes";
 
 export default () => {
+  const auth = useSelector(auth => auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const handleLogout = () => {
+    logoutUser();
+    history.push(ROUTES.index);
+  };
+  useEffect(() => {
+    getUser(dispatch);
+  }, []);
   return (
     <div className="dashboard_parent_wrapper">
       <div className="dashboard_card">
-        <h1 className="title">Hello there you are in</h1>
-
-        <Link className="standard_btn" to={ROUTES.logout}>
+        <h1>Hello {auth && auth.name}</h1>
+        <button className="standard_btn" onClick={handleLogout}>
           logout
-        </Link>
+        </button>
       </div>
     </div>
   );

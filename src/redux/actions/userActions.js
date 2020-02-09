@@ -1,4 +1,4 @@
-import { postRequest } from "../../util/api";
+import { postRequest, getRequest } from "../../util/api";
 
 export function userSignUpAction(dispatch, data) {
   const payload = postRequest("users", {
@@ -25,4 +25,25 @@ export function userLoginAction(dispatch, data) {
       });
     });
   return payload;
+}
+
+export function getUser(dispatch) {
+  const payload = getRequest("users/info")
+    .then(data => {
+      dispatch({
+        type: "GET_USER",
+        success: true
+      });
+    })
+    .catch(e => {
+      dispatch({
+        type: "USER_LOGIN",
+        data: { errorMessage: e.error },
+        success: false
+      });
+    });
+  return payload;
+}
+export function logoutUser() {
+  localStorage.removeItem("token");
 }

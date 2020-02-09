@@ -29,7 +29,22 @@ const rootReducer = (state = initialState, action) => {
         };
       }
     }
-
+    case "GET_USER": {
+      if (action.success) {
+        return {
+          ...state,
+          _id: action.data._id,
+          name: action.data.name,
+          error: false
+        };
+      } else {
+        return {
+          ...state,
+          error: true,
+          errorMessage: action.data.errorMessage
+        };
+      }
+    }
     default: {
       return state;
     }
