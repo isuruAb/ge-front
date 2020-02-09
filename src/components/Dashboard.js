@@ -6,16 +6,16 @@ import { getUser, logoutUser } from "../redux/actions/userActions";
 import { ROUTES } from "../util/routes";
 
 export default () => {
-  const auth = useSelector(auth => auth);
+  const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const handleLogout = () => {
-    logoutUser();
+    logoutUser(dispatch);
     history.push(ROUTES.index);
   };
   useEffect(() => {
     getUser(dispatch);
-  }, []);
+  }, [dispatch]);
   return (
     <div className="dashboard_parent_wrapper">
       <div className="dashboard_card">

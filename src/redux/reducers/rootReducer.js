@@ -15,17 +15,24 @@ const rootReducer = (state = initialState, action) => {
       if (action.success) {
         return {
           ...state,
-          _id: action.data._id,
-          name: action.data.name,
-          token: action.data.token,
-          authenticated: true,
-          error: false
+          auth: {
+            ...state.auth,
+            _id: action.data._id,
+            name: action.data.name,
+            token: action.data.token,
+            authenticated: true,
+            error: false,
+            errorMessage: ""
+          }
         };
       } else {
         return {
           ...state,
-          error: true,
-          errorMessage: action.data.errorMessage
+          auth: {
+            ...state.auth,
+            error: true,
+            errorMessage: action.data.errorMessage
+          }
         };
       }
     }
@@ -33,17 +40,29 @@ const rootReducer = (state = initialState, action) => {
       if (action.success) {
         return {
           ...state,
-          _id: action.data._id,
-          name: action.data.name,
-          error: false
+          auth: {
+            ...state.auth,
+            _id: action.data._id,
+            name: action.data.name,
+            error: false
+          }
         };
       } else {
         return {
           ...state,
-          error: true,
-          errorMessage: action.data.errorMessage
+          auth: {
+            ...state.auth,
+            error: true,
+            errorMessage: action.data.errorMessage
+          }
         };
       }
+    }
+    case "USER_LOGOUT": {
+      return {
+        ...state,
+        auth: { ...initialState.auth }
+      };
     }
     default: {
       return state;

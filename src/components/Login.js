@@ -11,7 +11,7 @@ import { userLoginAction } from "../redux/actions/userActions";
 export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const auth = useSelector(auth => auth);
+  const auth = useSelector(state => state.auth);
   const { errorMessage } = auth;
   const userLogin = () => {
     userLoginAction(dispatch, values);
@@ -26,9 +26,8 @@ export default () => {
   } = useForm(userLogin, validate);
 
   useEffect(() => {
-    const { authenticated, token } = auth;
+    const { authenticated } = auth;
     if (authenticated) {
-      localStorage.setItem("token", token);
       history.push(ROUTES.dashboard);
     }
     if (isSubmitting) {

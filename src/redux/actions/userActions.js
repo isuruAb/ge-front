@@ -45,6 +45,8 @@ export function getUser(dispatch) {
     });
   return payload;
 }
-export function logoutUser() {
-  localStorage.removeItem("token");
+export function logoutUser(dispatch) {
+  dispatch({
+    type: "USER_LOGOUT"
+  });
 }

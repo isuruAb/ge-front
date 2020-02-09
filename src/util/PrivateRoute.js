@@ -4,7 +4,8 @@ import { ROUTES } from "./routes";
 import { useSelector } from "react-redux";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  let auth = useSelector(auth => auth);
+  let auth = useSelector(state => state.auth);
+  console.log("auth", auth);
   const { authenticated, token } = auth;
   return (
     <Route
