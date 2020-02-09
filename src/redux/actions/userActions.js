@@ -9,7 +9,8 @@ export function userSignUpAction(dispatch, data) {
 export function userLoginAction(dispatch, data) {
   const payload = postRequest("users/login", {
     ...data
-  })
+  });
+  payload
     .then(data => {
       dispatch({
         type: "USER_LOGIN",
@@ -37,7 +38,7 @@ export function getUser(dispatch) {
     })
     .catch(e => {
       dispatch({
-        type: "USER_LOGIN",
+        type: "GET_USER",
         data: { errorMessage: e.error },
         success: false
       });
