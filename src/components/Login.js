@@ -12,7 +12,7 @@ export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const auth = useSelector(state => state.auth);
-  const { errorMessage } = auth;
+  const errorMessage = useSelector(state => state.errorMessage);
   const userLogin = () => {
     userLoginAction(dispatch, values);
   };
@@ -60,7 +60,9 @@ export default () => {
               error: errors.password
             }}
           />
-          {errorMessage && <div className="server_error">{errorMessage}</div>}
+          {typeof errorMessage !== "object" && errorMessage && (
+            <div className="server_error">{errorMessage}</div>
+          )}
           <button
             className="standard_btn"
             type="submit"

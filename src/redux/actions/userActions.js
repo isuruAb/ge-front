@@ -1,4 +1,5 @@
 import { postRequest, getRequest } from "../../util/api";
+import { getToken } from "../../util/util";
 
 export function userSignUpAction(dispatch, data) {
   const payload = postRequest("users", {
@@ -12,6 +13,7 @@ export function userLoginAction(dispatch, data) {
   });
   payload
     .then(data => {
+      localStorage.setItem("token", data.token);
       dispatch({
         type: "USER_LOGIN",
         data,
@@ -33,7 +35,8 @@ export function getUser(dispatch) {
     .then(data => {
       dispatch({
         type: "GET_USER",
-        success: true
+        success: true,
+        data: data
       });
     })
     .catch(e => {
@@ -46,7 +49,21 @@ export function getUser(dispatch) {
   return payload;
 }
 export function logoutUser(dispatch) {
-  dispatch({
-    type: "USER_LOGOUT"
-  });
+  const res = postRequest(
+    "users/logout",
+    {
+      token: getToken()
+    },
+    getToken()
+  );
+
+  res
+    .then(data => {
+      dispatch({
+        type: "USER_LOGOUT"
+      });
+      localStorage.removeItem("token");
+      localStorage.removeItem("persist:root");
+    })
+    .catch(e => {});
 }

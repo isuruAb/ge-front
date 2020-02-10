@@ -4,9 +4,9 @@ const initialState = {
     name: null,
     token: null,
     authenticated: false,
-    error: false,
-    errorMessage: null
-  }
+    error: false
+  },
+  errorMessage: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -21,18 +21,18 @@ const rootReducer = (state = initialState, action) => {
             name: action.data.name,
             token: action.data.token,
             authenticated: true,
-            error: false,
-            errorMessage: ""
-          }
+            error: false
+          },
+          errorMessage: ""
         };
       } else {
         return {
           ...state,
           auth: {
             ...state.auth,
-            error: true,
-            errorMessage: action.data.errorMessage
-          }
+            error: true
+          },
+          errorMessage: action.data.errorMessage
         };
       }
     }
@@ -59,10 +59,7 @@ const rootReducer = (state = initialState, action) => {
       }
     }
     case "USER_LOGOUT": {
-      return {
-        ...state,
-        auth: { ...initialState.auth }
-      };
+      return { ...initialState };
     }
     default: {
       return state;
